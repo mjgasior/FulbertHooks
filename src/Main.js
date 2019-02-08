@@ -15,6 +15,7 @@ const Main = () => {
         </p>
         <Link to="/counters">Show me counters</Link>
         <Link to="/pokemons">Show me the Pokemons</Link>
+        <Link to="/starwars">Show me Star Wars</Link>
       </header>
     </div>
   );

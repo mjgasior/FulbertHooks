@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.left {
+  width: 21%;
+  background-color: #a0a0a0;
+}

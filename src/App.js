@@ -5,6 +5,7 @@ import OwnerContext from "./OwnerContext";
 import { Counters } from "./Counters/Counters";
 import { Pokemons } from "./Pokemons/Pokemons";
 import './App.css';
+import { StarWars } from "./StarWars/StarWars";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         <Route component={Main} path="/" exact />
         <Route component={Counters} path="/counters" />
         <Route component={Pokemons} path="/pokemons" />
+        <Route component={StarWars} path="/starwars" />
       </OwnerContext.Provider>
     );
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { usePokemon, useCounter } from "./hooks";
+import { usePokemon, useCounter } from "./pokemonHooks";
 
 export const Pokemons = () => {
   const { increment, decrement, count } = useCounter(-1);

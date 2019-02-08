@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Main from "./Main";
 import OwnerContext from "./OwnerContext";
-import { Counters } from "./Counters";
-import { Pokemons } from "./Pokemons";
+import { Counters } from "./Counters/Counters";
+import { Pokemons } from "./Pokemons/Pokemons";
 import './App.css';
 
 class App extends Component {

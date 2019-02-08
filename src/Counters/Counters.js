@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSimpleCounter, useCursor } from "./hooks";
+import { useSimpleCounter, useCursor } from "./counterHooks";
 
 export const Counters = () => {
   const [fruit, setFruit] = useState("banana");

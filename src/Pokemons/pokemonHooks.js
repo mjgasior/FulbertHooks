@@ -1,19 +1,5 @@
 import { useState, useEffect, useReducer } from "react";
 
-// useState and useEffect to set the document title with cleanup effect
-export function useSimpleCounter(init) {
-  const [count, setCount] = useState(init);
-
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-    return function cleanup() {
-      document.title = "Time to clean this mess up!";
-    };
-  });
-
-  return { count, setCount };
-}
-
 // useState and useEffect to fetch data from PokeAPI (with delay)
 export function usePokemon() {
   const [pokemonData, setPokemon] = useState({});
@@ -50,16 +36,4 @@ export function useCounter(init) {
   const increment = () => setCount({ type: "INC" });
   const decrement = () => setCount({ type: "DEC" });
   return { count, increment, decrement };
-}
-
-// useEffect with event subscription
-export function useCursor(handleUp) {
-  useEffect(() => {
-    document.addEventListener("mouseup", handleUp);
-    console.log("I SUBSCRIBE TO MOUSE UP");
-    return function cleanup() {
-      document.removeEventListener("mouseup", handleUp);
-      console.log("I UNSUBSCRIBE MOUSE UP");
-    };
-  });
 }

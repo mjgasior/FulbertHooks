@@ -5,7 +5,7 @@ export function useDziadostfo(init) {
 
   useEffect(() => {
     document.title = `Klikłeś ${count} times`;
-    return () => console.log("wydupcam");
+    return () => console.log("I'm going out!");
   });
 
   return { count, setCount };
@@ -48,10 +48,10 @@ export function useCounter(init) {
 export function useCursor(handleUp) {
   useEffect(() => {
     document.addEventListener("mouseup", handleUp);
-    console.log("wbitka");
+    console.log("I SUBSCRIBE");
     return function cleanup() {
       document.removeEventListener("mouseup", handleUp);
-      console.log("wybitka");
+      console.log("GOODBYE TIME TO LEAVE");
     };
   });
 }

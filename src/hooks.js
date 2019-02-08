@@ -1,32 +1,39 @@
 import { useState, useEffect, useReducer } from "react";
 
-export function useDziadostfo(init) {
+// useState and useEffect to set the document title with cleanup effect
+export function useSimpleCounter(init) {
   const [count, setCount] = useState(init);
 
   useEffect(() => {
-    document.title = `Klikłeś ${count} times`;
-    return () => console.log("I'm going out!");
+    document.title = `You clicked ${count} times`;
+    return function cleanup() {
+      document.title = "Time to clean this mess up!";
+    };
   });
 
   return { count, setCount };
 }
 
-export function useGady() {
-  const [gady, setGady] = useState({});
+// useState and useEffect to fetch data from PokeAPI (with delay)
+export function usePokemon() {
+  const [pokemonData, setPokemon] = useState({});
 
-  const fetchGady = async () => {
+  const fetchPokemons = async () => {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon/ditto/");
-    const poksy = await response.json();
-    setGady(poksy);
+    const result = await response.json();
+    setTimeout(() => {
+      setPokemon(result);
+    }, 5000);
   };
 
   useEffect(() => {
-    fetchGady();
+    fetchPokemons();
   }, []);
 
-  return gady;
+  return pokemonData;
 }
 
+// useReducer and controlling a counter
 function counterReducer(count, event) {
   switch (event.type) {
     case "INC":
@@ -45,13 +52,14 @@ export function useCounter(init) {
   return { count, increment, decrement };
 }
 
+// useEffect with event subscription
 export function useCursor(handleUp) {
   useEffect(() => {
     document.addEventListener("mouseup", handleUp);
-    console.log("I SUBSCRIBE");
+    console.log("I SUBSCRIBE TO MOUSE UP");
     return function cleanup() {
       document.removeEventListener("mouseup", handleUp);
-      console.log("GOODBYE TIME TO LEAVE");
+      console.log("I UNSUBSCRIBE MOUSE UP");
     };
   });
 }

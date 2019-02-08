@@ -1,32 +1,20 @@
 import React, { useContext } from "react";
 import logo from "./logo.svg";
-import "./App.css";
 import { Link } from "react-router-dom";
-import KijContext from "./KijContext";
+import OwnerContext from "./OwnerContext";
 
 const Main = () => {
-  const walue = useContext(KijContext);
+  const { firstName, lastName, id } = useContext(OwnerContext);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <p>Context data (defaults overwritten in App.js):</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {firstName} {lastName} ({id})
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Link to="/party">
-          {walue.id} {walue.di}
-        </Link>
-        <Link to="/pokzy">
-          Poka pokzy
-        </Link>
+        <Link to="/counters">Show me counters</Link>
+        <Link to="/pokemons">Show me the Pokemons</Link>
       </header>
     </div>
   );

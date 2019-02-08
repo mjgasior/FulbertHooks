@@ -1,19 +1,21 @@
 import React, { Component } from "react";
-import "./App.css";
 import { Route } from "react-router-dom";
 import Main from "./Main";
-import { Party } from "./Others";
-import KijContext from "./KijContext";
-import { Pokzy } from "./Pokzy";
+import OwnerContext from "./OwnerContext";
+import { Counters } from "./Counters";
+import { Pokemons } from "./Pokemons";
+import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <KijContext.Provider value={{ id: "nad", di: "pisuje" }}>
+      <OwnerContext.Provider
+        value={{ id: "78235346", firstName: "Over", lastName: "Ride" }}
+      >
         <Route component={Main} path="/" exact />
-        <Route component={Party} path="/party" />
-        <Route component={Pokzy} path="/pokzy" />
-      </KijContext.Provider>
+        <Route component={Counters} path="/counters" />
+        <Route component={Pokemons} path="/pokemons" />
+      </OwnerContext.Provider>
     );
   }
 }

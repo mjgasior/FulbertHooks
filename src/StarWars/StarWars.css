@@ -14,6 +14,10 @@
   margin-left: 0;
 }
 
+.wrapper.is-nav-open > .nav > .nav__icon {
+  transform: rotateZ(-180deg);
+}
+
 .nav {
   position: relative;
   width: 250px;
@@ -24,12 +28,11 @@
 
 .nav__icon {
   position: absolute;
-  top: 0;
-  right: -115px;
-  padding: 20px;
-  font-size: 20px;
+  top: 10;
+  right: -50px;
+  font-size: 30px;
   cursor: pointer;
-  transition: color .3;
+  transition: color .5s ease-in-out, transform 1s ease-in-out;
 }
 
 .nav__icon:hover {

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import "./StarWars.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCoffee,
+  faArrowAltCircleRight
+} from "@fortawesome/free-solid-svg-icons";
 
 export class StarWars extends Component {
   handleClick = () => {
@@ -10,12 +15,16 @@ export class StarWars extends Component {
   render() {
     return (
       <div id="wrapper" className="wrapper">
-        <div className="nav">
-          <button className="nav__icon" onClick={this.handleClick}>Open</button>
+        <nav className="nav">
+          <FontAwesomeIcon
+            className="nav__icon"
+            icon={faArrowAltCircleRight}
+            onClick={this.handleClick}
+          />
           <div className="nav__body">Lorem dipsum</div>
-        </div>
+        </nav>
         <div className="content">
-          Here is some content
+          Here is some content <FontAwesomeIcon icon={faCoffee} />
         </div>
       </div>
     );

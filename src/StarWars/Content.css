@@ -5,3 +5,19 @@ input[type="checkbox"]:checked + label {
 input[type="number"]:out-of-range + label {
   color: red;
 }
+
+ol:after {
+  content: "afterstuff";
+}
+
+ol:before {
+  content: "beforestuff";
+}
+
+.contentCoffee:before,
+.contentCoffee:after {
+  content: "“";
+  font-size: 3em;
+  color: orange;
+  vertical-align: middle;
+}

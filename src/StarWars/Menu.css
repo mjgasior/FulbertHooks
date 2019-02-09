@@ -3,6 +3,33 @@ ul {
   padding-left: 10px;
 }
 
-a[href^=http] {
+a[href^="http"] {
   color: red;
+  position: relative;
+}
+
+a[href^="http"]:hover:before {
+  position: absolute;
+  content: attr(href);
+  top: 28px;
+  background-color: #777;
+  padding: 3px 5px;
+  color: white;
+  border-radius: 2px;
+  left: 0;
+}
+
+a[href^="http"]:hover:after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10px transparent solid;
+  left: 3px;
+  border-bottom-color: #777;
+  top: 10px;
+}
+
+li:not(:nth-child(3)):not(:last-child) {
+  color: #61dafb;
 }

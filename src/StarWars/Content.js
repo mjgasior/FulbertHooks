@@ -6,7 +6,7 @@ import "./Content.css";
 const Content = () => {
   return (
     <>
-      <div>
+      <div class="contentCoffee">
         Here is some content <FontAwesomeIcon icon={faCoffee} />
       </div>
       <div>
@@ -15,6 +15,13 @@ const Content = () => {
       <div>
         <input type="number" min="3" max="5" id="Chewie" /> <label for="Chewie">Number of Chewies!</label>
       </div>
+      <ol>
+        <li>Luke Skywalker</li>
+        <li>Bobba Fett</li>
+        <li>Han Solo</li>
+        <li>Lando Calrissian</li>
+        <li>Chewbacca</li>
+      </ol>
     </>
   );
 };

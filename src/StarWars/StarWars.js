@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import "./StarWars.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCoffee,
-  faArrowAltCircleRight
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
+import Menu from "./Menu";
+import Content from "./Content";
 
 export class StarWars extends Component {
   handleClick = () => {
@@ -14,17 +13,19 @@ export class StarWars extends Component {
 
   render() {
     return (
-      <div id="wrapper" className="wrapper">
+      <div id="wrapper" className="wrapper is-nav-open">
         <nav className="nav">
           <FontAwesomeIcon
             className="nav__icon"
             icon={faArrowAltCircleRight}
             onClick={this.handleClick}
           />
-          <div className="nav__body">Lorem dipsum</div>
+          <div className="nav__body">
+            <Menu />
+          </div>
         </nav>
         <div className="content">
-          Here is some content <FontAwesomeIcon icon={faCoffee} />
+          <Content />
         </div>
       </div>
     );

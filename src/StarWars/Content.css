@@ -1,0 +1,7 @@
+input[type="checkbox"]:checked + label {
+  color: #61dafb;
+}
+
+input[type="number"]:out-of-range + label {
+  color: red;
+}

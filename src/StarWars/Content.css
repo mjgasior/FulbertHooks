@@ -6,12 +6,8 @@ input[type="number"]:out-of-range + label {
   color: red;
 }
 
-ol:after {
-  content: "afterstuff";
-}
-
-ol:before {
-  content: "beforestuff";
+.contentCoffee {
+  text-shadow: 1px 1px 5px hsla(29, 100%, 50%, 0.9), 1px 1px 11px hsla(0, 0%, 100%, 0.9);
 }
 
 .contentCoffee:before,
@@ -20,4 +16,19 @@ ol:before {
   font-size: 3em;
   color: orange;
   vertical-align: middle;
+}
+
+body {
+  transition: 2s background-color linear;
+}
+
+@media only screen and (max-width: 1200px) {
+  body {
+    background: orange;
+  }
+}
+
+ol {
+  border: solid currentColor 1px;
+  border-radius: 3px;
 }

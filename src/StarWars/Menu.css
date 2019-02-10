@@ -5,6 +5,12 @@ ul {
 
 a[href^="http"] {
   color: red;
+}
+
+/* only on hover because multiple a's 
+  can have z index problems 
+  while always relative */
+a[href^="http"]:hover {
   position: relative;
 }
 

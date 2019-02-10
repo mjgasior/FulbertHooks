@@ -19,3 +19,4 @@ Additionally to read:
 * [React as a UI Runtime](https://overreacted.io/react-as-a-ui-runtime/)
 * [CSS](http://estelle.github.io/)
 * [Specificity](http://www.standardista.com/css3/css-specificity/)
+* [The Shapes of CSS](https://css-tricks.com/the-shapes-of-css/)

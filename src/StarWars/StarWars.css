@@ -40,5 +40,9 @@
 
 .content {
   padding: 100px;
-  margin: 0 auto;
+}
+
+.stripe {
+  height: 60px;
+  background-image: linear-gradient(to bottom right, red , yellow);
 }

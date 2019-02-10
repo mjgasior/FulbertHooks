@@ -24,8 +24,11 @@ export class StarWars extends Component {
             <Menu />
           </div>
         </nav>
-        <div className="content">
-          <Content />
+        <div style={{ flexGrow: 1 }}>
+          <div className="content">
+            <Content />
+          </div>
+          <div className="stripe"/>
         </div>
       </div>
     );

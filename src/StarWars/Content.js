@@ -6,14 +6,14 @@ import "./Content.css";
 const Content = () => {
   return (
     <>
-      <div class="contentCoffee">
+      <div className="contentCoffee">
         Here is some content <FontAwesomeIcon icon={faCoffee} />
       </div>
       <div>
-        <input type="checkbox" id="Luke" /> <label for="Luke">Luke Skywalker!</label>
+        <input type="checkbox" id="Luke" /> <label htmlFor="Luke">Luke Skywalker!</label>
       </div>
       <div>
-        <input type="number" min="3" max="5" id="Chewie" /> <label for="Chewie">Number of Chewies!</label>
+        <input type="number" min="3" max="5" id="Chewie" /> <label htmlFor="Chewie">Number of Chewies!</label>
       </div>
       <ol>
         <li>Luke Skywalker</li>

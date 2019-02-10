@@ -5,7 +5,7 @@ import "./Menu.css";
 const Menu = () => {
   return (
     <nav>
-      <ul class="a">
+      <ul className="a">
         <li>
           <Link to="/">Home</Link>
         </li>

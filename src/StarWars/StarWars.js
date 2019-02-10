@@ -6,10 +6,18 @@ import Menu from "./Menu";
 import Content from "./Content";
 
 export class StarWars extends Component {
+  state = {};
+
   handleClick = () => {
     const wrapper = document.getElementById("wrapper");
     wrapper.classList.toggle("is-nav-open");
   };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(nextProps);
+    console.log(prevState);
+    return {};
+  }
 
   render() {
     return (

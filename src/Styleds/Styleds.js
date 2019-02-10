@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
@@ -28,15 +28,30 @@ const Menu = styled.div`
 const Content = styled.div`
   flex-grow: 5;
   padding: 20px;
+
+  @media (max-width: 700px) {
+    background: red;
+  }
 `;
 
 const Button = styled(Link)`
+  display: inline-block;
   border: 1px solid orange;
   padding: 3px 10px;
   border-radius: 3px;
   background: orange;
+
   color: white;
   box-shadow: 0px 2px 5px #aaa;
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0px 1px 1px #aaa;
+  }
+
+  ${props => props.primary && css`
+    background: white;
+    color: black;
+  `}
 `;
 
 class Styleds extends Component {
@@ -48,6 +63,7 @@ class Styleds extends Component {
           <Menu>Menu</Menu>
           <Content>
             Content <Button to="/styled">Show me Styled</Button>
+            Content <Button to="/styled" primary>Show me Styled</Button>
           </Content>
         </Body>
       </Container>

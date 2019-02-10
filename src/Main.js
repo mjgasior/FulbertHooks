@@ -16,6 +16,7 @@ const Main = () => {
         <Link to="/counters">Show me counters</Link>
         <Link to="/pokemons">Show me the Pokemons</Link>
         <Link to="/starwars">Show me Star Wars</Link>
+        <Link to="/styled">Show me Styled</Link>
       </header>
     </div>
   );

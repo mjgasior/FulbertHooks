@@ -6,6 +6,7 @@ import { Counters } from "./Counters/Counters";
 import { Pokemons } from "./Pokemons/Pokemons";
 import './App.css';
 import { StarWars } from "./StarWars/StarWars";
+import Styleds from "./Styleds/Styleds";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route component={Counters} path="/counters" />
         <Route component={Pokemons} path="/pokemons" />
         <Route component={StarWars} path="/starwars" />
+        <Route component={Styleds} path="/styled" />
       </OwnerContext.Provider>
     );
   }

@@ -19,6 +19,9 @@ const Menu = () => {
           <Link to="/starwars">Show me Star Wars</Link>
         </li>
         <li>
+          <Link to="/styled">Show me Styled</Link>
+        </li>
+        <li>
           <a href="https://swapi.co/">Star Wars API</a>
         </li>
       </ul>

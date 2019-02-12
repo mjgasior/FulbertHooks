@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Sockets from "./Sockets";
+import { HookSockets, ClassSockets } from "./Sockets";
 
 const Container = styled.div`
   display: flex;
@@ -70,7 +70,8 @@ class Styleds extends Component {
             <Button to="/styled" primary>
               Show me Styled
             </Button>
-            <Sockets />
+            <HookSockets />
+            <ClassSockets />
           </Content>
         </Body>
       </Container>

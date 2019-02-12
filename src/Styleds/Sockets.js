@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import openSocket from "socket.io-client";
 import update from "immutability-helper";
+import { useChat } from "./socketHooks";
 
-class Sockets extends Component {
+export class ClassSockets extends Component {
   state = {
     socket: openSocket("http://localhost:3003"),
     messages: []
@@ -32,4 +33,13 @@ class Sockets extends Component {
   }
 }
 
-export default Sockets;
+export const HookSockets = () => {
+  const { messages, send } = useChat();
+  return (
+    <div>
+      <div>Sockets</div>
+      <div>{messages}</div>
+      <button onClick={() => send("Sample text")}>Send Message</button>
+    </div>
+  );
+};

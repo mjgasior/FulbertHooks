@@ -10,16 +10,10 @@ class Sockets extends Component {
 
   componentDidMount() {
     this.state.socket.on("chat message", msg => {
-      console.log(msg);
-      const messages = this.state.messages.slice(0);
-      messages.push(msg);
-      this.setState({ messages });
-      /*this.setState(prevState => {
-        const newData = update(prevState, {
-          messages: { $push: [msg] }
-        });
-        return { messages: newData };
-      });*/
+      const newState = update(this.state, {
+        messages: { $push: [msg] }
+      });
+      this.setState(newState);
     });
   }
 

@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Sockets from "./Sockets";
 
 const Container = styled.div`
   display: flex;
@@ -48,10 +49,12 @@ const Button = styled(Link)`
     box-shadow: 0px 1px 1px #aaa;
   }
 
-  ${props => props.primary && css`
-    background: white;
-    color: black;
-  `}
+  ${props =>
+    props.primary &&
+    css`
+      background: white;
+      color: black;
+    `}
 `;
 
 class Styleds extends Component {
@@ -63,7 +66,11 @@ class Styleds extends Component {
           <Menu>Menu</Menu>
           <Content>
             Content <Button to="/styled">Show me Styled</Button>
-            Content <Button to="/styled" primary>Show me Styled</Button>
+            Content{" "}
+            <Button to="/styled" primary>
+              Show me Styled
+            </Button>
+            <Sockets />
           </Content>
         </Body>
       </Container>

@@ -9,10 +9,6 @@ app.get("/public", function(req, res) {
   });
 });
 
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/socketFile.html");
-});
-
 io.on("connection", function(socket) {
   console.log("a user connected");
   socket.on("chat message", function(msg) {

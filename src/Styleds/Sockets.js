@@ -6,7 +6,8 @@ import { useChat } from "./socketHooks";
 export class ClassSockets extends Component {
   state = {
     socket: openSocket("http://localhost:3003"),
-    messages: []
+    messages: [],
+    message: ""
   };
 
   componentDidMount() {
@@ -19,7 +20,12 @@ export class ClassSockets extends Component {
   }
 
   handleClick = () => {
-    this.state.socket.emit("chat message", "Sample message from React!");
+    this.state.socket.emit("chat message", this.state.message);
+    this.setState({ message: "" });
+  };
+
+  handleChange = event => {
+    this.setState({ message: event.target.value });
   };
 
   render() {
@@ -27,6 +33,11 @@ export class ClassSockets extends Component {
       <div>
         <div>Sockets</div>
         <div>{this.state.messages}</div>
+        <input
+          type="text"
+          value={this.state.message}
+          onChange={this.handleChange}
+        />
         <button onClick={this.handleClick}>Send Message</button>
       </div>
     );

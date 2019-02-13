@@ -67,7 +67,7 @@ class Styleds extends Component {
           <Content>
             Content <Button to="/styled">Show me Styled</Button>
             Content{" "}
-            <Button to="/styled" primary>
+            <Button to="/styled" primary="true">
               Show me Styled
             </Button>
             <HookSockets />

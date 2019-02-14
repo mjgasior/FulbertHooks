@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import openSocket from "socket.io-client";
 import update from "immutability-helper";
-import { useChat, useChatter } from "./socketHooks";
+import { useChat } from "./socketHooks";
 
 export class ClassSockets extends Component {
   state = {
@@ -60,23 +60,12 @@ export class ClassSockets extends Component {
 }
 
 export const HookSockets = () => {
-  const { messages } = useChatter();
+  const { messages } = useChat();
   return (
     <div>
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
       ))}
-    </div>
-  );
-};
-
-export const HookSocketsBroken = () => {
-  const { messages, send } = useChat();
-  return (
-    <div>
-      <div>Sockets</div>
-      <div>{messages}</div>
-      <button onClick={() => send("Sample text")}>Send Message</button>
     </div>
   );
 };

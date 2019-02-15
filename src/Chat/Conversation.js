@@ -1,13 +1,14 @@
 import React from "react";
-import { useChatter } from "./socketHooks";
+import { useChat } from "./socketHooks";
 
-export const Conversation = () => {
-  const { messages } = useChatter();
+export const Conversation = ({ nickname }) => {
+  const { messages, publish } = useChat();
   return (
     <div>
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
       ))}
+      <button onClick={() => publish(nickname, "This is the message")}>Publish</button>
     </div>
   );
 };

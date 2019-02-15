@@ -1,9 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { HookSockets, ClassSockets } from "./Sockets";
 import Nickname from "./Nickname";
 import { Modal } from "./Modal";
+import { Conversation } from "./Conversation";
 
 const Container = styled.div`
   display: flex;
@@ -37,28 +36,6 @@ const Content = styled.div`
   }
 `;
 
-const Button = styled(Link)`
-  display: inline-block;
-  border: 1px solid orange;
-  padding: 3px 10px;
-  border-radius: 3px;
-  background: orange;
-
-  color: white;
-  box-shadow: 0px 2px 5px #aaa;
-  &:active {
-    transform: translateY(2px);
-    box-shadow: 0px 1px 1px #aaa;
-  }
-
-  ${props =>
-    props.primary &&
-    css`
-      background: white;
-      color: black;
-    `}
-`;
-
 const Chat = () => {
   const [nickname, setNickname] = useState("");
 
@@ -74,13 +51,7 @@ const Chat = () => {
           <>
             <Menu>Menu</Menu>
             <Content>
-              Content <Button to="/chat">Show me Styled</Button>
-              Content{" "}
-              <Button to="/chat" primary="true">
-                Show me Styled
-              </Button>
-              <HookSockets />
-              <ClassSockets nickname={nickname} />
+              <Conversation nickname={nickname} />
             </Content>
           </>
         )}

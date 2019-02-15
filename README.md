@@ -14,6 +14,7 @@ The app uses:
 * useContext (with super cool [React Context](https://reactjs.org/docs/context.html))
 
 Additionally to read:
+* [WebSockets chat](https://socket.io/get-started/chat/)
 * [5 Ways to animate a ReactJs app in 2019](https://medium.com/@dmitrynozhenko/5-ways-to-animate-a-reactjs-app-in-2019-56eb9af6e3bf)
 * [Developing UI](http://mrmrs.cc/writing/2016/04/21/developing-ui/)
 * [React as a UI Runtime](https://overreacted.io/react-as-a-ui-runtime/)

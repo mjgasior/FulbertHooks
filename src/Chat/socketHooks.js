@@ -3,15 +3,31 @@ import update from "immutability-helper";
 import openSocket from "socket.io-client";
 
 export function useChat() {
-  const [messages, setMessages] = useState([]);
+  const [state, setState] = useState({
+    publish: null,
+    messages: []
+  });
 
   useEffect(() => {
     const socket = openSocket("http://localhost:3003");
-    socket.on("chat message", msg => {
-      const newState = update(messages, { $push: [msg] });
-      setMessages(newState);
+
+    const publish = (nickname, message) =>
+      socket.emit("chat message", nickname, message);
+
+    setState(previousState =>
+      update(previousState, {
+        publish: { $set: publish }
+      })
+    );
+
+    socket.on("chat message", (nickname, message) => {
+      setState(previousState =>
+        update(previousState, {
+          messages: { $push: [`${nickname}: ${message}`] }
+        })
+      );
     });
   }, []);
 
-  return { messages };
+  return state;
 }

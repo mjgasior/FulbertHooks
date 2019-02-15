@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HookSockets, ClassSockets } from "./Sockets";
+import Nickname from "./Nickname";
+import { Modal } from "./Modal";
 
 const Container = styled.div`
   display: flex;
@@ -57,26 +59,34 @@ const Button = styled(Link)`
     `}
 `;
 
-class Styleds extends Component {
-  render() {
-    return (
-      <Container>
-        <Title>Styled Components</Title>
-        <Body>
-          <Menu>Menu</Menu>
-          <Content>
-            Content <Button to="/styled">Show me Styled</Button>
-            Content{" "}
-            <Button to="/styled" primary="true">
-              Show me Styled
-            </Button>
-            <HookSockets />
-            <ClassSockets />
-          </Content>
-        </Body>
-      </Container>
-    );
-  }
-}
+const Chat = () => {
+  const [nickname, setNickname] = useState("");
 
-export default Styleds;
+  return (
+    <Container>
+      <Title>Styled Components</Title>
+      <Body>
+        {nickname === "" ? (
+          <Modal>
+            <Nickname set={setNickname} />
+          </Modal>
+        ) : (
+          <>
+            <Menu>Menu</Menu>
+            <Content>
+              Content <Button to="/chat">Show me Styled</Button>
+              Content{" "}
+              <Button to="/chat" primary="true">
+                Show me Styled
+              </Button>
+              <HookSockets />
+              <ClassSockets nickname={nickname} />
+            </Content>
+          </>
+        )}
+      </Body>
+    </Container>
+  );
+};
+
+export default Chat;

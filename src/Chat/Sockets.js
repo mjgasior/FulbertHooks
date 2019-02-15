@@ -7,7 +7,6 @@ export class ClassSockets extends Component {
   state = {
     socket: openSocket("http://localhost:3003"),
     messages: [],
-    nickname: "",
     message: ""
   };
 
@@ -23,15 +22,13 @@ export class ClassSockets extends Component {
   handleClick = () => {
     this.state.socket.emit(
       "chat message",
-      this.state.nickname,
+      this.props.nickname,
       this.state.message
     );
     this.setState({ message: "" });
   };
 
   handleChange = event => this.setState({ message: event.target.value });
-
-  handleNickname = event => this.setState({ nickname: event.target.value });
 
   render() {
     return (
@@ -42,12 +39,7 @@ export class ClassSockets extends Component {
             <div>{message}</div>
           ))}
         </div>
-        <input
-          type="text"
-          value={this.state.nickname}
-          onChange={this.handleNickname}
-          placeholder="Set nickname"
-        />
+        <div>{this.props.nickname}</div>
         <input
           type="text"
           value={this.state.message}

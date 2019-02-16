@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-export const SendMessage = ({ publish }) => {
+export const SendMessage = ({ publish, startTyping }) => {
   const inputRef = useRef(null);
 
   const onSendMessage = () => {
@@ -14,6 +14,7 @@ export const SendMessage = ({ publish }) => {
   };
 
   const onKeyDown = event => {
+    startTyping();
     if (event.key === "Enter") {
       onSendMessage();
     }

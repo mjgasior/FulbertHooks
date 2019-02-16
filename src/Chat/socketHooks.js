@@ -5,7 +5,9 @@ import openSocket from "socket.io-client";
 export function useChat(nickname) {
   const [state, setState] = useState({
     publish: null,
-    messages: []
+    startTyping: null,
+    messages: [],
+    typingUsers: []
   });
 
   useEffect(() => {
@@ -14,10 +16,12 @@ export function useChat(nickname) {
     });
 
     const publish = message => socket.emit("chat message", message);
+    const startTyping = () => socket.emit("typing");
 
     setState(previousState =>
       update(previousState, {
-        publish: { $set: publish }
+        publish: { $set: publish },
+        startTyping: { $set: startTyping }
       })
     );
 
@@ -33,6 +37,22 @@ export function useChat(nickname) {
       setState(previousState =>
         update(previousState, {
           messages: { $push: [`${nickname}: ${message}`] }
+        })
+      );
+    });
+
+    socket.on("typing", ({ nickname }) => {
+      setState(previousState =>
+        update(previousState, {
+          typingUsers: { $push: [nickname] }
+        })
+      );
+    });
+
+    socket.on("stop typing", ({ nickname }) => {
+      setState(previousState =>
+        update(previousState, {
+          typingUsers: arr => arr.filter(item => item !== nickname)
         })
       );
     });

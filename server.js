@@ -11,18 +11,28 @@ app.get("/public", function(req, res) {
 
 io.on("connection", function(socket) {
   const { nickname } = socket.handshake.query;
-  io.emit(
-    "user message",
-    `User ${nickname} joined chat`
-  );
+  let isTyping = false;
+
+  io.emit("user message", `User ${nickname} joined chat`);
+
   socket.on("chat message", function(message) {
     io.emit("chat message", nickname, message);
   });
+
   socket.on("disconnect", function() {
-    io.emit(
-      "user message",
-      `User ${nickname} left chat`
-    );
+    io.emit("user message", `User ${nickname} left chat`);
+  });
+
+  socket.on("typing", () => {
+    if (!isTyping) {
+      socket.broadcast.emit("typing", { nickname });
+      isTyping = true;
+
+      setTimeout(() => {
+        socket.broadcast.emit("stop typing", { nickname });
+        isTyping = false;
+      }, 1000);
+    }
   });
 });
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useChat } from "./socketHooks";
+import { SendMessage } from "./SendMessage";
 
 export const Conversation = ({ nickname }) => {
   const { messages, publish } = useChat(nickname);
@@ -8,7 +9,7 @@ export const Conversation = ({ nickname }) => {
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
       ))}
-      <button onClick={() => publish(nickname, "This is the message")}>Publish</button>
+      <SendMessage nickname={nickname} publish={publish} />
     </div>
   );
 };

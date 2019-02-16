@@ -15,7 +15,7 @@ io.on("connection", function(socket) {
     io.emit("chat message", nickname, message);
   });
   socket.on("disconnect", function() {
-    io.emit("user message", "User left chat");
+    io.emit("user message", `User ${socket.handshake.query.nickname} left chat`);
   });
 });
 

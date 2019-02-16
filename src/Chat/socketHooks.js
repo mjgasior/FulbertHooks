@@ -41,7 +41,7 @@ export function useChat(nickname) {
       );
     });
 
-    socket.on("typing", ({ nickname }) => {
+    socket.on("typing", nickname => {
       setState(previousState =>
         update(previousState, {
           typingUsers: { $push: [nickname] }
@@ -49,7 +49,7 @@ export function useChat(nickname) {
       );
     });
 
-    socket.on("stop typing", ({ nickname }) => {
+    socket.on("stop typing", nickname => {
       setState(previousState =>
         update(previousState, {
           typingUsers: arr => arr.filter(item => item !== nickname)

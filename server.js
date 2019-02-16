@@ -13,7 +13,7 @@ io.on("connection", function(socket) {
   const { nickname } = socket.handshake.query;
   let isTyping = false;
 
-  io.emit("user message", `User ${nickname} joined chat`);
+  socket.broadcast.emit("user message", `User ${nickname} joined chat`);
 
   socket.on("chat message", function(message) {
     io.emit("chat message", nickname, message);
@@ -25,11 +25,11 @@ io.on("connection", function(socket) {
 
   socket.on("typing", () => {
     if (!isTyping) {
-      socket.broadcast.emit("typing", { nickname });
+      socket.broadcast.emit("typing", nickname);
       isTyping = true;
 
       setTimeout(() => {
-        socket.broadcast.emit("stop typing", { nickname });
+        socket.broadcast.emit("stop typing", nickname);
         isTyping = false;
       }, 1000);
     }

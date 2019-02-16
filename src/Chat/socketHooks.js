@@ -13,8 +13,7 @@ export function useChat(nickname) {
       query: `nickname=${nickname}`
     });
 
-    const publish = (nickname, message) =>
-      socket.emit("chat message", nickname, message);
+    const publish = message => socket.emit("chat message", message);
 
     setState(previousState =>
       update(previousState, {

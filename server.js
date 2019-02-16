@@ -10,12 +10,19 @@ app.get("/public", function(req, res) {
 });
 
 io.on("connection", function(socket) {
-  io.emit("user message", `User ${socket.handshake.query.nickname} joined chat`);
-  socket.on("chat message", function(nickname, message) {
+  const { nickname } = socket.handshake.query;
+  io.emit(
+    "user message",
+    `User ${nickname} joined chat`
+  );
+  socket.on("chat message", function(message) {
     io.emit("chat message", nickname, message);
   });
   socket.on("disconnect", function() {
-    io.emit("user message", `User ${socket.handshake.query.nickname} left chat`);
+    io.emit(
+      "user message",
+      `User ${nickname} left chat`
+    );
   });
 });
 

@@ -9,7 +9,7 @@ export const Conversation = ({ nickname }) => {
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
       ))}
-      <SendMessage nickname={nickname} publish={publish} />
+      <SendMessage publish={publish} />
     </div>
   );
 };

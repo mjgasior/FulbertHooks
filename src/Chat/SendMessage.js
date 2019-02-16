@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
 
-export const SendMessage = ({ nickname, publish }) => {
+export const SendMessage = ({ publish }) => {
   const inputRef = useRef(null);
 
   const onSendMessage = () => {
     const message = inputRef.current.value;
     if (message && message !== "") {
-      publish(nickname, message);
+      publish(message);
       inputRef.current.value = "";
       return;
     }

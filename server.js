@@ -10,12 +10,12 @@ app.get("/public", function(req, res) {
 });
 
 io.on("connection", function(socket) {
-  io.emit("chat message", "User joined chat");
+  io.emit("user message", `User ${socket.handshake.query.nickname} joined chat`);
   socket.on("chat message", function(nickname, message) {
     io.emit("chat message", nickname, message);
   });
   socket.on("disconnect", function() {
-    io.emit("chat message", "User left chat");
+    io.emit("user message", "User left chat");
   });
 });
 

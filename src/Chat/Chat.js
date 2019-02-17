@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import React, { useState } from "react";
+import styled from "styled-components";
 import Nickname from "./Nickname";
 import { Modal } from "./Modal";
 import { Conversation } from "./Conversation";
@@ -21,6 +21,7 @@ const Title = styled.div`
 const Body = styled.div`
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
 `;
 
 const Menu = styled.div`
@@ -37,7 +38,7 @@ const Content = styled.div`
 `;
 
 const Chat = () => {
-  const [nickname, setNickname] = useState("DENIS");
+  const [nickname, setNickname] = useState("usted");
 
   return (
     <Container>

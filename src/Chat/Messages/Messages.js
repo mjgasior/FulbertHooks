@@ -5,7 +5,7 @@ import { Notification } from "./Notification";
 
 const Messages = ({ messages }) => {
   return (
-    <div>
+    <>
       {messages.map(({ type, message, nickname }, index) => {
         switch (type) {
           case "SELF":
@@ -20,7 +20,7 @@ const Messages = ({ messages }) => {
             return null;
         }
       })}
-    </div>
+    </>
   );
 };
 

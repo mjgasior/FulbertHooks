@@ -1,7 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 export const SendMessage = ({ publish, startTyping }) => {
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
 
   const onSendMessage = () => {
     const message = inputRef.current.value;

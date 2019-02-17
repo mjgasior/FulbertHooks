@@ -1,7 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 const Nickname = ({ set }) => {
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
 
   const onAcceptNickname = () => {
     const nick = inputRef.current.value;
@@ -13,7 +19,7 @@ const Nickname = ({ set }) => {
   };
 
   const onKeyDown = event => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       onAcceptNickname();
     }
   };

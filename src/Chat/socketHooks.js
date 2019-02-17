@@ -17,9 +17,7 @@ export function useSocket(nickname) {
 export function useChat(socket) {
   const [state, setState] = useState({
     publish: null,
-    startTyping: null,
-    messages: [],
-    typingUsers: []
+    messages: []
   });
 
   useEffect(() => {
@@ -29,7 +27,7 @@ export function useChat(socket) {
     const publish = message => {
       setState(previousState =>
         update(previousState, {
-          messages: { $push: [`You wrote: ${message}`] }
+          messages: { $push: [{ type: "SELF", message }] }
         })
       );
       socket.emit("chat message", message);
@@ -44,7 +42,7 @@ export function useChat(socket) {
     socket.on("user message", message => {
       setState(previousState =>
         update(previousState, {
-          messages: { $push: [message] }
+          messages: { $push: [{ type: "USER_LOG", message }] }
         })
       );
     });
@@ -52,7 +50,7 @@ export function useChat(socket) {
     socket.on("chat message", (nickname, message) => {
       setState(previousState =>
         update(previousState, {
-          messages: { $push: [`${nickname}: ${message}`] }
+          messages: { $push: [{ type: "USER_MESSAGE", message, nickname }] }
         })
       );
     });

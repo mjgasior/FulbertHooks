@@ -14,9 +14,10 @@ export const SendMessage = ({ publish, startTyping }) => {
   };
 
   const onKeyDown = event => {
-    startTyping();
     if (event.key === "Enter") {
       onSendMessage();
+    } else {
+      startTyping();
     }
   };
 

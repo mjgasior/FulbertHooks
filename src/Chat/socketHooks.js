@@ -2,7 +2,19 @@ import { useState, useEffect } from "react";
 import update from "immutability-helper";
 import openSocket from "socket.io-client";
 
-export function useChat(nickname) {
+export function useSocket(nickname) {
+  const [socket, setSocket] = useState();
+  useEffect(() => {
+    const newSocket = openSocket("http://localhost:3003", {
+      query: `nickname=${nickname}`
+    });
+    setSocket(newSocket);
+  }, []);
+
+  return socket;
+}
+
+export function useChat(socket) {
   const [state, setState] = useState({
     publish: null,
     startTyping: null,
@@ -11,10 +23,9 @@ export function useChat(nickname) {
   });
 
   useEffect(() => {
-    const socket = openSocket("http://localhost:3003", {
-      query: `nickname=${nickname}`
-    });
-
+    if (!socket) {
+      return;
+    }
     const publish = message => {
       setState(previousState =>
         update(previousState, {
@@ -23,12 +34,10 @@ export function useChat(nickname) {
       );
       socket.emit("chat message", message);
     };
-    const startTyping = () => socket.emit("typing");
 
     setState(previousState =>
       update(previousState, {
-        publish: { $set: publish },
-        startTyping: { $set: startTyping }
+        publish: { $set: publish }
       })
     );
 
@@ -47,6 +56,29 @@ export function useChat(nickname) {
         })
       );
     });
+  }, [socket]);
+
+  return state;
+}
+
+export function useTyping(socket) {
+  const [state, setState] = useState({
+    startTyping: null,
+    typingUsers: []
+  });
+
+  useEffect(() => {
+    if (!socket) {
+      return;
+    }
+
+    const startTyping = () => socket.emit("typing");
+
+    setState(previousState =>
+      update(previousState, {
+        startTyping: { $set: startTyping }
+      })
+    );
 
     socket.on("typing", nickname => {
       setState(previousState =>
@@ -63,7 +95,7 @@ export function useChat(nickname) {
         })
       );
     });
-  }, []);
+  }, [socket]);
 
   return state;
 }

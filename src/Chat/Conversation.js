@@ -2,7 +2,7 @@ import React from "react";
 import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
-import Messages from "./Messages";
+import Messages from "./Messages/Messages";
 
 const Typing = styled.div`
   color: #a0a0a0;

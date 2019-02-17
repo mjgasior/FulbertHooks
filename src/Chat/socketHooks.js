@@ -16,10 +16,10 @@ export function useSocket(nickname) {
 
 const defaultMessage = [
   { type: "SELF", message: "This is first" },
-  { type: "USER_LOG", message: "User benis logged" },
-  { type: "SELF", message: "This is second" },
-  { type: "USER_MESSAGE", message: "Hey you!", nickname: "benis" },
-  { type: "USER_MESSAGE", message: "It's me", nickname: "benis" },
+  { type: "USER_LOG", message: "User denis logged" },
+  { type: "SELF", message: "This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second" },
+  { type: "USER_MESSAGE", message: "Hey you!", nickname: "denis" },
+  { type: "USER_MESSAGE", message: "It's me", nickname: "denis" },
   { type: "SELF", message: "This is third" }
 ];
 

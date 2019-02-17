@@ -24,11 +24,11 @@ const Body = styled.div`
 `;
 
 const Menu = styled.div`
-  flex-grow: 1;
+  width: 15%;
 `;
 
 const Content = styled.div`
-  flex-grow: 5;
+  width: 40%;
   padding: 20px;
 
   @media (max-width: 700px) {
@@ -37,7 +37,7 @@ const Content = styled.div`
 `;
 
 const Chat = () => {
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState("DENIS");
 
   return (
     <Container>

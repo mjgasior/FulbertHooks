@@ -14,10 +14,19 @@ export function useSocket(nickname) {
   return socket;
 }
 
+const defaultMessage = [
+  { type: "SELF", message: "This is first" },
+  { type: "USER_LOG", message: "User benis logged" },
+  { type: "SELF", message: "This is second" },
+  { type: "USER_MESSAGE", message: "Hey you!", nickname: "benis" },
+  { type: "USER_MESSAGE", message: "It's me", nickname: "benis" },
+  { type: "SELF", message: "This is third" }
+];
+
 export function useChat(socket) {
   const [state, setState] = useState({
     publish: null,
-    messages: []
+    messages: defaultMessage
   });
 
   useEffect(() => {

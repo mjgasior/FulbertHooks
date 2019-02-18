@@ -15,8 +15,8 @@ io.on("connection", socket => {
 
   socket.broadcast.emit("user message", `User ${nickname} joined chat`);
 
-  socket.on("chat message", message => {
-    socket.broadcast.emit("chat message", nickname, message);
+  socket.on("chat message", ({ message, date }) => {
+    socket.broadcast.emit("chat message", { message, date, nickname });
   });
 
   socket.on("disconnect", () => {

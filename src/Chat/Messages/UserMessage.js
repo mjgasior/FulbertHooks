@@ -18,12 +18,12 @@ const Nickname = styled.div`
   color: #ccc;
 `;
 
-export const UserMessage = ({ message, nickname }) => {
+export const UserMessage = ({ message, nickname, date }) => {
   return (
     <>
       <Nickname>{nickname}</Nickname>
       <Container>
-        <Content>{message}</Content>
+        <Content>{message} {date}</Content>
       </Container>
     </>
   );

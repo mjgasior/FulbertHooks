@@ -14,10 +14,10 @@ const Content = styled(Message)`
   max-width: 70%;
 `;
 
-export const MyMessage = ({ message }) => {
+export const MyMessage = ({ message, date }) => {
   return (
     <Container>
-      <Content>{message}</Content>
+      <Content>{new Date(date).toTimeString("HH:mm")} {message}</Content>
     </Container>
   );
 };

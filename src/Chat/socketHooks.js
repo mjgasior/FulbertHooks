@@ -17,7 +17,11 @@ export function useSocket(nickname) {
 const defaultMessage = [
   { type: "SELF", message: "This is first" },
   { type: "USER_LOG", message: "User denis logged" },
-  { type: "SELF", message: "This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second" },
+  {
+    type: "SELF",
+    message:
+      "This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second"
+  },
   { type: "USER_MESSAGE", message: "Hey you!", nickname: "denis" },
   { type: "USER_MESSAGE", message: "It's me", nickname: "denis" },
   { type: "SELF", message: "This is third" }
@@ -26,7 +30,7 @@ const defaultMessage = [
 export function useChat(socket) {
   const [state, setState] = useState({
     publish: null,
-    messages: defaultMessage
+    messages: []
   });
 
   useEffect(() => {
@@ -34,12 +38,13 @@ export function useChat(socket) {
       return;
     }
     const publish = message => {
+      const date = Date.now();
       setState(previousState =>
         update(previousState, {
-          messages: { $push: [{ type: "SELF", message }] }
+          messages: { $push: [{ type: "SELF", message, date }] }
         })
       );
-      socket.emit("chat message", message);
+      socket.emit("chat message", { message, date });
     };
 
     setState(previousState =>
@@ -56,10 +61,12 @@ export function useChat(socket) {
       );
     });
 
-    socket.on("chat message", (nickname, message) => {
+    socket.on("chat message", ({ message, date, nickname }) => {
       setState(previousState =>
         update(previousState, {
-          messages: { $push: [{ type: "USER_MESSAGE", message, nickname }] }
+          messages: {
+            $push: [{ type: "USER_MESSAGE", message, date, nickname }]
+          }
         })
       );
     });

@@ -12,20 +12,20 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  align-content: flex-end;
 `;
 
 const MessageBlock = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  justify-content: flex-end;
+  overflow-y: auto;
 `;
 
 export const Conversation = ({ nickname }) => {
   const socket = useSocket(nickname);
   const { messages, publish } = useChat(socket);
   const { typingUsers, startTyping } = useTyping(socket);
-
   return (
     <Container>
       <MessageBlock>

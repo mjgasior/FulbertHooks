@@ -29,7 +29,7 @@ const Menu = styled.div`
 `;
 
 const Content = styled.div`
-  width: 40%;
+  width: 50%;
   padding: 20px;
 
   @media (max-width: 700px) {

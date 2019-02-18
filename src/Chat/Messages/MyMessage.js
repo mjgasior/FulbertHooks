@@ -5,6 +5,7 @@ import { Message } from "./Message";
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
+  flex-shrink: 0;
 `;
 
 const Content = styled(Message)`

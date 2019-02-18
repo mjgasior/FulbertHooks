@@ -18,7 +18,6 @@ const MessageBlock = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: flex-end;
   overflow-y: auto;
 `;
 
@@ -30,10 +29,10 @@ export const Conversation = ({ nickname }) => {
     <Container>
       <MessageBlock>
         <Messages messages={messages} />
-        {typingUsers.map((nickname, index) => (
-          <Typing key={index}>{nickname} is typing...</Typing>
-        ))}
       </MessageBlock>
+      {typingUsers.map((nickname, index) => (
+        <Typing key={index}>{nickname} is typing...</Typing>
+      ))}
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>
   );

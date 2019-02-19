@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Message } from "./Message";
+import { getDate } from "./dates";
 
 const Container = styled.div`
   display: flex;
@@ -23,7 +24,9 @@ export const UserMessage = ({ message, nickname, date }) => {
     <>
       <Nickname>{nickname}</Nickname>
       <Container>
-        <Content>{message} {date}</Content>
+        <Content data-date={getDate(date)} left={true}>
+          {message}
+        </Content>
       </Container>
     </>
   );

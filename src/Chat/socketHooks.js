@@ -15,22 +15,23 @@ export function useSocket(nickname) {
 }
 
 const defaultMessage = [
-  { type: "SELF", message: "This is first" },
-  { type: "USER_LOG", message: "User denis logged" },
+  { type: "SELF", message: "This is first", date: 1550315471 },
+  { type: "USER_LOG", message: "User denis logged", date: 1550315471 },
   {
     type: "SELF",
     message:
-      "This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second"
+      "This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second This is second",
+    date: 1550401871
   },
-  { type: "USER_MESSAGE", message: "Hey you!", nickname: "denis" },
-  { type: "USER_MESSAGE", message: "It's me", nickname: "denis" },
-  { type: "SELF", message: "This is third" }
+  { type: "USER_MESSAGE", message: "Hey you!", nickname: "denis", date: 1550401871 },
+  { type: "USER_MESSAGE", message: "It's me", nickname: "denis", date: 1550488271 },
+  { type: "SELF", message: "This is third", date: 1550574671 }
 ];
 
 export function useChat(socket) {
   const [state, setState] = useState({
     publish: null,
-    messages: []
+    messages: defaultMessage
   });
 
   useEffect(() => {

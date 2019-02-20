@@ -25,10 +25,14 @@ export const Conversation = ({ nickname }) => {
   const socket = useSocket(nickname);
   const { messages, publish } = useChat(socket);
   const { typingUsers, startTyping } = useTyping(socket);
+  const groupedMessages = groupMessages(messages);
+
   return (
     <Container>
       <MessageBlock>
-        <Messages messages={messages} />
+        {groupedMessages.map((group, index) => (
+          <Messages key={index} messages={group} />
+        ))}
       </MessageBlock>
       {typingUsers.map((nickname, index) => (
         <Typing key={index}>{nickname} is typing...</Typing>
@@ -36,4 +40,24 @@ export const Conversation = ({ nickname }) => {
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>
   );
+};
+
+const groupMessages = messages => {
+  let lastType = null;
+  const groupedMessages = [];
+  let counter = -1;
+
+  messages.forEach(message => {
+    const currentType = message.type;
+
+    if (lastType !== currentType) {
+      counter++;
+      groupedMessages[counter] = [];
+    }
+
+    groupedMessages[counter].push(message);
+    lastType = currentType;
+  });
+
+  return groupedMessages;
 };

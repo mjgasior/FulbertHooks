@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { getDate } from "./dates";
 import { RightMessage } from "./MessageStyles";
+import { useAutoScroll } from "./scrollHook";
 
 const Container = styled.div`
   display: flex;
@@ -10,8 +11,10 @@ const Container = styled.div`
 `;
 
 export const MyMessage = ({ message, date, isFirst, isLast }) => {
+  const containerRef = useAutoScroll();
+
   return (
-    <Container>
+    <Container ref={containerRef}>
       <RightMessage data-date={getDate(date)} isFirst={isFirst} isLast={isLast}>
         {message}
       </RightMessage>

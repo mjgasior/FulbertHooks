@@ -4,6 +4,8 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   height: 40px;
+  margin-top: 5px;
+  flex-shrink: 0;
 `;
 
 const Input = styled.input`

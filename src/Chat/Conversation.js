@@ -29,13 +29,13 @@ export const Conversation = ({ nickname }) => {
 
   return (
     <Container>
-      <MessageBlock>
+      <MessageBlock className="scroll">
         {groupedMessages.map((group, index) => (
           <Messages messages={group} key={index} />
         ))}
       </MessageBlock>
       {typingUsers.map((nickname, index) => (
-        <Typing key={index}>{nickname} is typing...</Typing>
+        <Typing key={index + nickname}>{nickname} is typing...</Typing>
       ))}
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>

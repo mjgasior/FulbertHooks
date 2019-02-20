@@ -27,6 +27,12 @@ const defaultMessage = [
   { type: "USER_MESSAGE", message: "It's me", nickname: "denis", date: 1550488271 },
   { type: "SELF", message: "This is third", date: 1550574671 },
   { type: "SELF", message: "This is me", date: 1550574671 },
+  { type: "SELF", message: "This is third", date: 1550574671 },
+  { type: "SELF", message: "This is me", date: 1550574671 },
+  { type: "SELF", message: "This is third", date: 1550574671 },
+  { type: "SELF", message: "This is me", date: 1550574671 },
+  { type: "SELF", message: "This is third", date: 1550574671 },
+  { type: "SELF", message: "This is me", date: 1550574671 },
   { type: "SELF", message: "This is you", date: 1550574671 }
 ];
 

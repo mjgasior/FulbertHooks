@@ -31,7 +31,7 @@ export const Conversation = ({ nickname }) => {
     <Container>
       <MessageBlock>
         {groupedMessages.map((group, index) => (
-          <Messages key={index} messages={group} />
+          <Messages messages={group} key={index} />
         ))}
       </MessageBlock>
       {typingUsers.map((nickname, index) => (

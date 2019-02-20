@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Message } from "./Message";
 import { getDate } from "./dates";
+import { LeftMessage } from "./MessageStyles";
 
 const Container = styled.div`
   display: flex;
@@ -9,25 +9,12 @@ const Container = styled.div`
   flex-shrink: 0;
 `;
 
-const Content = styled(Message)`
-  background: #fff;
-  color: #282c34;
-  max-width: 70%;
-`;
-
-const Nickname = styled.div`
-  color: #ccc;
-`;
-
-export const UserMessage = ({ message, nickname, date }) => {
+export const UserMessage = ({ message, date, isFirst, isLast }) => {
   return (
-    <>
-      <Nickname>{nickname}</Nickname>
-      <Container>
-        <Content data-date={getDate(date)} left={true}>
-          {message}
-        </Content>
-      </Container>
-    </>
+    <Container>
+      <LeftMessage data-date={getDate(date)} isFirst={isFirst} isLast={isLast}>
+        {message}
+      </LeftMessage>
+    </Container>
   );
 };

@@ -1,9 +1,20 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const rotate = keyframes`
+  from {
+    transform: rotateX(90deg);
+  }
+
+  to {
+    transform: rotateX(0deg);
+  }
+`;
 
 const Message = styled.div`
   padding: 10px;
   margin: 2px;
   border-radius: 0px;
+  animation: ${rotate} 250ms ease-in-out;
 
   &:hover {
     position: relative;

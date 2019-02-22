@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
@@ -24,10 +24,11 @@ export const Conversation = ({ nickname }) => {
   const { typingUsers, startTyping } = useTyping(socket);
   const groupedMessages = groupMessages(messages);
 
-  const onScrolling = (event) => {
-    console.log(event);
-    console.log(event.detail);
-    console.log(event.nativeEvent);
+  const onScrolling = ({ target }) => {
+    const maxScrollPosition = target.scrollHeight - target.clientHeight;
+    const currentScrollPosition = target.scrollTop;
+    const diff = maxScrollPosition - currentScrollPosition;
+    console.log("Distance of the scroll thumb from the bottom of the scroll: " + diff);
   }
 
   return (

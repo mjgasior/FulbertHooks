@@ -38,7 +38,7 @@ const Content = styled.div`
 `;
 
 const Chat = () => {
-  const [nickname, setNickname] = useState("dd");
+  const [nickname, setNickname] = useState("");
 
   return (
     <Container>

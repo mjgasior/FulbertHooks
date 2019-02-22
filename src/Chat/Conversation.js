@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
@@ -24,14 +24,20 @@ export const Conversation = ({ nickname }) => {
   const { typingUsers, startTyping } = useTyping(socket);
   const groupedMessages = groupMessages(messages);
 
+  const onScrolling = (event) => {
+    console.log(event);
+    console.log(event.detail);
+    console.log(event.nativeEvent);
+  }
+
   return (
     <Container>
-      <MessageBlock className="scroll">
+      <MessageBlock className="scroll" onScroll={onScrolling}>
         {groupedMessages.map((group, index) => (
           <Messages messages={group} key={index} />
         ))}
         {typingUsers.map((nickname, index) => (
-          <TypingMessage key={index + nickname} nickname={nickname}/>
+          <TypingMessage key={index + nickname} nickname={nickname} />
         ))}
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
@@ -40,20 +46,23 @@ export const Conversation = ({ nickname }) => {
 };
 
 const groupMessages = messages => {
-  let lastType = null;
+  let lastType = null,
+    lastNickname = undefined;
   const groupedMessages = [];
   let counter = -1;
 
   messages.forEach(message => {
     const currentType = message.type;
+    const currentNickname = message.nickname;
 
-    if (lastType !== currentType) {
+    if (lastType !== currentType || lastNickname !== currentNickname) {
       counter++;
       groupedMessages[counter] = [];
     }
 
     groupedMessages[counter].push(message);
     lastType = currentType;
+    lastNickname = currentNickname;
   });
 
   return groupedMessages;

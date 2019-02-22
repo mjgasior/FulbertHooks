@@ -1,7 +1,16 @@
+import React from "react";
 import styled from "styled-components";
+import { useAutoScroll } from "./scrollHook";
 
-export const Notification = styled.div`
+const Content = styled.div`
   padding: 10px;
   color: #ccc;
   text-align: center;
 `;
+
+export const Notification = ({ children }) => {
+  const containerRef = useAutoScroll();
+  return (
+    <Content ref={containerRef}>{children}</Content>
+  );
+};

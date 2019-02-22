@@ -11,7 +11,7 @@ const Container = styled.div`
 
 export const TypingMessage = ({ nickname }) => {
   const containerRef = useAutoScroll();
-
+  /* check where is the scroll - if is at the bottom, than scroll, if not, don't */
   return (
     <Container ref={containerRef}>
       <LeftMessage isFirst={true} isLast={true}>

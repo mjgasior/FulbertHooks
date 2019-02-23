@@ -8,8 +8,8 @@ const Content = styled.div`
   text-align: center;
 `;
 
-export const Notification = ({ children }) => {
-  const containerRef = useAutoScroll();
+export const Notification = ({ children, canTriggerAutoScroll }) => {
+  const containerRef = useAutoScroll(canTriggerAutoScroll);
   return (
     <Content ref={containerRef}>{children}</Content>
   );

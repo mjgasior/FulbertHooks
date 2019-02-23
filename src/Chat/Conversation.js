@@ -24,25 +24,26 @@ export const Conversation = ({ nickname }) => {
   const { messages, publish } = useChat(socket);
   const { typingUsers, startTyping } = useTyping(socket);
   const groupedMessages = groupMessages(messages);
-  
-  const [ scrollPosition, setPosition ] = useState(-1);
 
-  const onScrolling = ({ target }) => {
+  const [isAtBottom, setIsAtBottom] = useState(true);
+
+  const onScrolling = event => {
+    const { target } = event;
     const maxScrollPosition = target.scrollHeight - target.clientHeight;
     const currentScrollPosition = target.scrollTop;
     const diff = maxScrollPosition - currentScrollPosition;
-    setPosition(diff);
+    setIsAtBottom(diff === 0);
   };
 
   return (
     <Container>
       <MessageBlock className="scroll" onScroll={onScrolling}>
-        <ScrollContext.Provider value={{ position: scrollPosition }}>
+        <ScrollContext.Provider value={{ isAtBottom }}>
           {groupedMessages.map((group, index) => (
             <Messages messages={group} key={index} />
           ))}
           {typingUsers.map((nickname, index) => (
-            <TypingMessage key={index + nickname} nickname={nickname} />
+            <TypingMessage canTriggerAutoScroll={isAtBottom} key={index + nickname} nickname={nickname} />
           ))}
         </ScrollContext.Provider>
       </MessageBlock>

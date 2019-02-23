@@ -10,8 +10,14 @@ const Container = styled.div`
   flex-shrink: 0;
 `;
 
-export const UserMessage = ({ message, date, isFirst, isLast }) => {
-  const containerRef = useAutoScroll();
+export const UserMessage = ({
+  message,
+  date,
+  canTriggerAutoScroll,
+  isFirst,
+  isLast
+}) => {
+  const containerRef = useAutoScroll(canTriggerAutoScroll);
 
   return (
     <Container ref={containerRef}>

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { LeftMessage } from "./MessageStyles";
-import { useAutoScroll } from "./scrollHook";
 
 const Container = styled.div`
   display: flex;
@@ -9,10 +8,9 @@ const Container = styled.div`
   flex-shrink: 0;
 `;
 
-export const TypingMessage = ({ nickname, canTriggerAutoScroll }) => {
-  const containerRef = useAutoScroll(canTriggerAutoScroll);
+export const TypingMessage = ({ nickname }) => {
   return (
-    <Container ref={containerRef}>
+    <Container>
       <LeftMessage isFirst={true} isLast={true}>
         {nickname} is typing...
       </LeftMessage>

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { getDate } from "./dates";
 import { RightMessage } from "./MessageStyles";
 import { useAutoScroll } from "./scrollHook";
+import ScrollContext from "../ScrollContext";
 
 const Container = styled.div`
   display: flex;
@@ -11,6 +12,8 @@ const Container = styled.div`
 `;
 
 export const MyMessage = ({ message, date, isFirst, isLast }) => {
+  const { position } = useContext(ScrollContext);
+  console.log("MyMessage" + position);
   const containerRef = useAutoScroll();
 
   return (

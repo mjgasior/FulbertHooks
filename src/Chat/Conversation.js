@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
 import Messages from "./Messages/Messages";
 import { TypingMessage } from "./Messages/TypingMessage";
+import ScrollContext from "./ScrollContext";
 
 const Container = styled.div`
   display: flex;
@@ -23,23 +24,27 @@ export const Conversation = ({ nickname }) => {
   const { messages, publish } = useChat(socket);
   const { typingUsers, startTyping } = useTyping(socket);
   const groupedMessages = groupMessages(messages);
+  
+  const [ scrollPosition, setPosition ] = useState(-1);
 
   const onScrolling = ({ target }) => {
     const maxScrollPosition = target.scrollHeight - target.clientHeight;
     const currentScrollPosition = target.scrollTop;
     const diff = maxScrollPosition - currentScrollPosition;
-    console.log("Distance of the scroll thumb from the bottom of the scroll: " + diff);
-  }
+    setPosition(diff);
+  };
 
   return (
     <Container>
       <MessageBlock className="scroll" onScroll={onScrolling}>
-        {groupedMessages.map((group, index) => (
-          <Messages messages={group} key={index} />
-        ))}
-        {typingUsers.map((nickname, index) => (
-          <TypingMessage key={index + nickname} nickname={nickname} />
-        ))}
+        <ScrollContext.Provider value={{ position: scrollPosition }}>
+          {groupedMessages.map((group, index) => (
+            <Messages messages={group} key={index} />
+          ))}
+          {typingUsers.map((nickname, index) => (
+            <TypingMessage key={index + nickname} nickname={nickname} />
+          ))}
+        </ScrollContext.Provider>
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>

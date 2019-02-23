@@ -4,6 +4,7 @@ import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
 import Messages from "./Messages/Messages";
 import { TypingMessage } from "./Messages/TypingMessage";
+import { ScrollToBottom } from "./Messages/ScrollToBottom";
 
 const Container = styled.div`
   display: flex;
@@ -38,11 +39,12 @@ export const Conversation = ({ nickname }) => {
     <Container>
       <MessageBlock className="scroll" onScroll={onScrolling}>
           {groupedMessages.map((group, index) => (
-            <Messages messages={group} key={index} />
+            <Messages messages={group} key={index} canTriggerAutoScroll={isAtBottom} />
           ))}
           {typingUsers.map((nickname, index) => (
-            <TypingMessage canTriggerAutoScroll={isAtBottom} key={index + nickname} nickname={nickname} />
+            <TypingMessage key={index + nickname} nickname={nickname} />
           ))}
+          {isAtBottom && <ScrollToBottom />}
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>

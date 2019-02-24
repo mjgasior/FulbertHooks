@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
 import Messages from "./Messages/Messages";
 import { TypingMessage } from "./Messages/TypingMessage";
-import { ScrollToBottom } from "./Messages/ScrollToBottom";
 
 const Container = styled.div`
   display: flex;

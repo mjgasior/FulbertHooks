@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
@@ -26,23 +26,42 @@ export const Conversation = ({ nickname }) => {
 
   const [position, setPosition] = useState(0);
 
+  const containerRef = useRef(null);
   const onScrolling = event => {
     const { target } = event;
     const maxScrollPosition = target.scrollHeight - target.clientHeight;
     const currentScrollPosition = target.scrollTop;
     const diff = maxScrollPosition - currentScrollPosition;
-    setPosition(diff === 0);
+    setPosition(diff);
   };
+
+  useEffect(() => {
+    if (position === 0 && containerRef) {
+      console.log("should scroll");
+      setTimeout(
+        () =>
+          (containerRef.current.scrollTop = containerRef.current.scrollHeight),
+        500
+      );
+    } else {
+      console.log("should NOT scroll");
+    }
+  }, [messages]);
 
   return (
     <Container>
-      <MessageBlock className="scroll" onScroll={onScrolling}>
+      <MessageBlock
+        className="scroll"
+        onScroll={onScrolling}
+        ref={containerRef}
+      >
         {groupedMessages.map((group, index) => (
           <Messages messages={group} key={index} />
         ))}
-        {position === 0 && typingUsers.map((nickname, index) => (
-          <TypingMessage key={index + nickname} nickname={nickname} />
-        ))}
+        {position === 0 &&
+          typingUsers.map((nickname, index) => (
+            <TypingMessage key={index + nickname} nickname={nickname} />
+          ))}
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>

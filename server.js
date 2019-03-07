@@ -31,7 +31,7 @@ io.on("connection", socket => {
       setTimeout(() => {
         socket.broadcast.emit("stop typing", nickname);
         isTyping = false;
-      }, 1000);
+      }, 3000);
     }
   });
 });

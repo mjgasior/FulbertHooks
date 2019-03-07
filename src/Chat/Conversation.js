@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
 import Messages from "./Messages/Messages";
 import { TypingMessage } from "./Messages/TypingMessage";
-import ScrollContext from "./ScrollContext";
 
 const Container = styled.div`
   display: flex;
@@ -25,27 +24,41 @@ export const Conversation = ({ nickname }) => {
   const { typingUsers, startTyping } = useTyping(socket);
   const groupedMessages = groupMessages(messages);
 
-  const [isAtBottom, setIsAtBottom] = useState(true);
+  const [position, setPosition] = useState(0);
 
+  const containerRef = useRef(null);
   const onScrolling = event => {
     const { target } = event;
     const maxScrollPosition = target.scrollHeight - target.clientHeight;
     const currentScrollPosition = target.scrollTop;
     const diff = maxScrollPosition - currentScrollPosition;
-    setIsAtBottom(diff === 0);
+    setPosition(diff);
   };
+
+  useEffect(() => {
+    if (position < 1 && containerRef) {
+      setTimeout(
+        () =>
+          (containerRef.current.scrollTop = containerRef.current.scrollHeight),
+        100
+      );
+    }
+  }, [messages, typingUsers]);
 
   return (
     <Container>
-      <MessageBlock className="scroll" onScroll={onScrolling}>
-        <ScrollContext.Provider value={{ isAtBottom }}>
-          {groupedMessages.map((group, index) => (
-            <Messages messages={group} key={index} />
+      <MessageBlock
+        className="scroll"
+        onScroll={onScrolling}
+        ref={containerRef}
+      >
+        {groupedMessages.map((group, index) => (
+          <Messages messages={group} key={index} />
+        ))}
+        {position < 1 &&
+          typingUsers.map((nickname, index) => (
+            <TypingMessage key={index + nickname} nickname={nickname} />
           ))}
-          {typingUsers.map((nickname, index) => (
-            <TypingMessage canTriggerAutoScroll={isAtBottom} key={index + nickname} nickname={nickname} />
-          ))}
-        </ScrollContext.Provider>
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>

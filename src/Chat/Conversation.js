@@ -56,7 +56,7 @@ export const Conversation = ({ nickname }) => {
           <Messages messages={group} key={index} />
         ))}
 
-        <Typing mode={position < 1} users={typingUsers} />
+        <Typing mode={position < 1} users={typingUsers} offset={position} />
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>

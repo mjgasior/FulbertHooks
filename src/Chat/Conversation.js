@@ -3,7 +3,7 @@ import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
 import Messages from "./Messages/Messages";
-import { TypingMessage } from "./Messages/TypingMessage";
+import { Typing } from "./Typing";
 
 const Container = styled.div`
   display: flex;
@@ -55,10 +55,8 @@ export const Conversation = ({ nickname }) => {
         {groupedMessages.map((group, index) => (
           <Messages messages={group} key={index} />
         ))}
-        {position < 1 &&
-          typingUsers.map((nickname, index) => (
-            <TypingMessage key={index + nickname} nickname={nickname} />
-          ))}
+
+        <Typing mode={position < 1} users={typingUsers} />
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
     </Container>

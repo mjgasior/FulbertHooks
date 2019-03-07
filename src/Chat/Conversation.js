@@ -3,12 +3,14 @@ import { useChat, useSocket, useTyping } from "./socketHooks";
 import { SendMessage } from "./SendMessage";
 import styled from "styled-components";
 import Messages from "./Messages/Messages";
-import { Typing } from "./Typing";
+import { TypingMessages } from "./TypingMessages";
+import { TypingPopup } from "./TypingPopup";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 `;
 
 const MessageBlock = styled.div`
@@ -55,10 +57,10 @@ export const Conversation = ({ nickname }) => {
         {groupedMessages.map((group, index) => (
           <Messages messages={group} key={index} />
         ))}
-
-        <Typing mode={position < 1} users={typingUsers} offset={position} />
+        {position < 1 && <TypingMessages users={typingUsers} />}
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
+      {position > 1 && <TypingPopup users={typingUsers} />}
     </Container>
   );
 };

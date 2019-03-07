@@ -36,17 +36,14 @@ export const Conversation = ({ nickname }) => {
   };
 
   useEffect(() => {
-    if (position === 0 && containerRef) {
-      console.log("should scroll");
+    if (position < 1 && containerRef) {
       setTimeout(
         () =>
           (containerRef.current.scrollTop = containerRef.current.scrollHeight),
-        500
+        100
       );
-    } else {
-      console.log("should NOT scroll");
     }
-  }, [messages]);
+  }, [messages, typingUsers]);
 
   return (
     <Container>
@@ -58,7 +55,7 @@ export const Conversation = ({ nickname }) => {
         {groupedMessages.map((group, index) => (
           <Messages messages={group} key={index} />
         ))}
-        {position === 0 &&
+        {position < 1 &&
           typingUsers.map((nickname, index) => (
             <TypingMessage key={index + nickname} nickname={nickname} />
           ))}

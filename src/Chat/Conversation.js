@@ -57,7 +57,7 @@ export const Conversation = ({ nickname }) => {
         {groupedMessages.map((group, index) => (
           <Messages messages={group} key={index} />
         ))}
-        {position < 1 && <TypingMessages users={typingUsers} />}
+        <TypingMessages users={typingUsers} />
       </MessageBlock>
       <SendMessage publish={publish} startTyping={startTyping} />
       {position > 1 && <TypingPopup users={typingUsers} />}
